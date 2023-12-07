@@ -1,9 +1,11 @@
-FROM ubuntu:22.04
+FROM openjdk:8-jre-alpine
+
+RUN apk update && apk add bash
+
 WORKDIR /app
-RUN apt-get update -y
-RUN apt-get -y openjdk-17-jre nginx
-COPY vprofile-project-ci-jenkins ./
-RUN mv vprofile-project-ci-jenkins index.html
-RUN mv index.html /var/www/html/
-EXPOSE 80
-CMD ["/usr/sbin/nginx", "-c", "daemon off;"]
+
+COPY /target/vprofile-v2.war /app
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "vprofile-v2.war"]
