@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 WORKDIR /app
 RUN apt-get update -y
-RUN apt-get -y java nginx
+RUN apt-get -y openjdk-17-jre nginx
 COPY vprofile-project-ci-jenkins ./
 RUN mv vprofile-project-ci-jenkins index.html
 RUN mv index.html /var/www/html/
