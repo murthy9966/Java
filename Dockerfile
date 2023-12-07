@@ -6,6 +6,6 @@ WORKDIR /app
 
 COPY /target/vprofile-v2.war /app
 
-EXPOSE 8082
+EXPOSE 8083
 
-CMD ["java", "-jar", "vprofile-v2.war"]
+CMD ["java", "-war", "vprofile-v2.war"]
