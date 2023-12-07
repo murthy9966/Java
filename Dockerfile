@@ -8,7 +8,7 @@ WORKDIR /usr/local/tomcat/webapps
 RUN rm -rf ROOT
 
 # Copy the war file into the webapps directory
-COPY your-web-app.war ROOT.war
+COPY vprofile-v2.war ROOT.war
 
 # Expose the port that Tomcat will run on
 EXPOSE 8080
