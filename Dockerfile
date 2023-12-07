@@ -1,11 +1,17 @@
-FROM openjdk:8-jre-alpine
+# Use an official Tomcat runtime as a parent image
+FROM tomcat:latest
 
-RUN apk update && apk add bash
+# Set the working directory to the Tomcat webapps directory
+WORKDIR /usr/local/tomcat/webapps
 
-WORKDIR /app
+# Remove the default Tomcat sample application
+RUN rm -rf ROOT
 
-COPY /target/vprofile-v2.war /app
+# Copy the war file into the webapps directory
+COPY your-web-app.war ROOT.war
 
-EXPOSE 8083
+# Expose the port that Tomcat will run on
+EXPOSE 8080
 
-CMD ["java", "-war", "vprofile-v2.war"]
+# Start Tomcat when the container starts
+CMD ["catalina.sh", "run"]
