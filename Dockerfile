@@ -1,14 +1,11 @@
-# Use an official Tomcat runtime as a parent image
-FROM tomcat:latest
+# Use an official Tomcat runtime as a base image
+FROM tomcat:9-jre11-slim
 
-# Set the working directory to the Tomcat webapps directory
-WORKDIR /usr/local/tomcat/webapps
+# Remove the default Tomcat apps
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Remove the default Tomcat sample application
-RUN rm -rf ROOT
-
-# Copy the war file into the webapps directory
-COPY vprofile-v2.war ROOT.war
+# Copy the WAR file into the webapps directory of Tomcat
+COPY your-java-app.war /usr/local/tomcat/webapps/your-java-app.war
 
 # Expose the port that Tomcat will run on
 EXPOSE 8080
